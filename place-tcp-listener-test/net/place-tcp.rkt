@@ -3,6 +3,7 @@
 (require net/place-tcp
          net/tcp-sig
          racket/place
+         racket/port
          racket/tcp
          racket/unit
          rackunit)
@@ -47,13 +48,14 @@
    "place-tcp"
 
    (test-case "boot failure"
-     (check-exn
-      #rx"boot timeout"
-      (lambda ()
-        (place-tcp-listen
-         #:boot-timeout 5
-         #:parallelism 2
-         start-failing-place 0))))
+     (parameterize ([current-error-port (open-output-nowhere)])
+       (check-exn
+        #rx"boot timeout"
+        (lambda ()
+          (place-tcp-listen
+           #:boot-timeout 5
+           #:parallelism 2
+           start-failing-place 0)))))
 
    (test-case "echo server with p=2"
      (define listener
