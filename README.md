@@ -15,4 +15,4 @@ The documentation is hosted on [docs.racket-lang.org][docs].
     place-tcp-listener is licensed under the 3-Clause BSD license.
 
 
-[docs]: http://docs.racket-lang.org/net-ip/index.html
+[docs]: https://docs.racket-lang.org/place-tcp-listener-manual/index.html
